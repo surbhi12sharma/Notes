@@ -1,0 +1,22 @@
+Vertical Scaling -> Optimize Process and increse throughput with the same resources
+
+Preprocessing and core jobs -> Preparing before hand during non-peak hours
+
+Resilience -> Recovering from failures quickly (keep backups and avoid single point of failures)
+
+Hoizontal Scaling -> Hire more resources (buying more machine of similar type to get more work done)
+
+Microservice architecture ->
+
+            Horizontal              |           Vertical Scaling
+1. Increase number of machine       |   1. Increase the capacity of one machine
+2. Load balancer is required        |   2. N/A
+3. Resilient                        |   3. Single point of failures
+4. Network calls (RPC)              |   4. Inter process communication
+(Inter procee communication)        |
+5. Data Inconsistency               |   5. Consistent
+6. Scales well as user increse      |   6. Hardware limit
+
+01413532000
+
+210724000338

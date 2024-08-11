@@ -1,0 +1,29 @@
+Type of graph
+1. Directed  and undirected
+
+
+TOPOSORT:-(DFS) ->direct asycic graph
+Linear ordering of vertices such that if there is an edge between u&v, u appears before v in that ordering.
+
+
+Dijkstra -> help in detect cycle
+Bellman Ford Algo-> Help in detect negative cycle. Only applicable in DG(directed graph)
+
+Floyd warshal Algo -> Helps in detect multisource shortest path. and negative cycle
+
+Minimum spanning Tree:-> A tree in which we have n nodes and n-1 edges and all notes are reachable from each other
+
+kruskal Algo:-> used to find Minimum spanning Tree
+
+Articulation Point:-> Nodes on whose removal the graph breaks into multiple components
+
+Kosaraju's Algo->
+1. Sort all the edges according to finishing time
+2. Reverse the graph
+3. Do a dfs
+
+
+
+
+//Dp
+1. https://leetcode.com/problems/delete-and-earn/description/?envType=study-plan-v2&envId=dynamic-programming

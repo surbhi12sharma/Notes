@@ -1,0 +1,12 @@
+Memoization :- Tend to store value of sub problem in map / table
+
+Tabulation-> Bottom Up->Base case to requirement
+Recussion -> Top down ->
+
+Question 1. Climbing Stars: -> same as fib
+
+
+2D/3D DP
+
+Grid Unique Path
+Input  m=3, n=7  Output=

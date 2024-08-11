@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkbox Check All</title>
+</head>
+<body>
+    <div>
+        <input type="checkbox" class="checkbox"> Checkbox 1<br>
+        <input type="checkbox" class="checkbox"> Checkbox 2<br>
+        <input type="checkbox" class="checkbox"> Checkbox 3<br>
+        <input type="checkbox" id="checkAllButton"> SelectAll<br>
+    </div>
+    <!-- <button id="checkAllButton">Check All</button> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const checkboxes = document.querySelectorAll('.checkbox');
+            const checkAllButton = document.getElementById('checkAllButton');
+
+            let allChecked = false;
+
+            checkAllButton.addEventListener('click', () => {
+                allChecked = !allChecked; // Toggle the allChecked state
+                checkboxes.forEach(checkbox => checkbox.checked = allChecked);
+                // updateButtonLabel();
+            });
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    if (Array.from(checkboxes).every(cb => cb.checked)) {
+                        allChecked = false;
+                        checkAllButton.click();
+                    } else {
+                        // allChecked = true;
+                        checkAllButton.click=false
+                        // checkAllButton.click
+                    }
+                    // updateButtonLabel();
+                });
+            });
+
+            function updateButtonLabel() {
+                checkAllButton.textContent = allChecked ? 'Uncheck All' : 'Check All';
+            }
+        });
+    </script>
+</body>
+</html>

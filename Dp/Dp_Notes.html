@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h4{
+            margin-bottom: 5px;
+        }
+        h5{
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <ol>
+        <h4>1D</h4>
+        <li>
+            <h4>Geek Jump</h4>
+            Given a number of stairs and a frog, the frog wants to climb from the 0th stair to the (N-1)th stair. At a time the frog can climb either one or two steps. A height[N] array is also given. Whenever the frog jumps from a stair i to stair j, the energy consumed in the jump is abs(height[i]- height[j]), where abs() means the absolute difference. We need to return the minimum energy that can be used by the frog to jump from stair 0 to stair N-1.
+            <h5>Recurrsion</h5>
+            Step 1: Express the problem in terms of indexes<br>
+            f(n-1, height)<br>
+            Step 2: If n is 0, it means the frog is on the first stone, so no energy is needed to stay there.<br>
+            if(n===0){<br>
+                &ensp; return 0<br>
+            }<br>
+            Step3: One-step Jump: Compute the energy to jump from the previous stone (n-1) to the current stone (n), adding the absolute height difference.<br>
+            Step 4: Two-step Jump: If possible (i.e., n > 1), compute the energy to jump from two stones back (n-2), adding the absolute height difference. Set this to a large value if not possible.<br>
+            Step 5: Return this minimum value.
+        </li>
+        <li>
+            <h4><a href="https://leetcode.com/problems/house-robber/description/">House Robber</a></h4>
+            You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+        </li>
+        <li>
+            <h4>Ninja's Training</h4>
+            Step 1: If idx is 0 (the first row of points), find the maximum points that can be collected, excluding the starting point start.<br>
+            Step 2: Initialize maxPoint to store the maximum points that can be collected.<br>
+            Step 3: Iterate through the points at the current index idx, skipping the starting point start.<br>
+            Step 4: Recursively calculate the points for the previous index (idx - 1) with the current point i as the new starting point, and add it to the current points.<br>
+            Step 5: Update maxPoint to the maximum of the current maxPoint and the newly calculated points.
+
+        </li>
+        <li>
+            <h4><a href="https://leetcode.com/problems/unique-paths/description/">Unique Paths</a></h4>
+            The function findPath calculates the number of unique paths from the top-left corner (0,0) to a cell (m,n) in a grid.<br>
+            Recurssion<br>
+            1. Base Case: If the cell is the starting cell (0,0), there is only one path.<br>
+            2. Out of Bounds Check: If the cell indices are negative, return 0 as it is outside the grid.<br>
+            3. Recursively calculate the number of paths by moving up (from (m-1, n)) and left (from (m, n-1)).<br>
+            4. Sum the results of these recursive calls to get the total number of paths to the current cell.
+        </li>
+    </ol>
+</body>
+</html>

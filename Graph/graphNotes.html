@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ol>
+        <li>
+
+            <h1>Introduction to Graphs</h1>
+
+            <h2>Components of a Graph:</h2>
+            <ul>
+                <li><strong>Vertices (Nodes)</strong>: The fundamental units of the graph, representing entities.</li>
+                <li><strong>Edges</strong>: The connections between pairs of vertices.</li>
+            </ul>
+
+            <h2>Types of Graphs:</h2>
+            <ul>
+                <li><strong>Directed Graph (Digraph)</strong>: Each edge has a direction, going from one vertex to
+                    another.</li>
+                <li><strong>Undirected Graph</strong>: Edges do not have a direction and simply connect two vertices.
+                </li>
+                <li><strong>Weighted Graph</strong>: Edges have weights representing the cost, length, or capacity of
+                    the connection.</li>
+                <li><strong>Unweighted Graph</strong>: All edges are considered to have the same weight.</li>
+            </ul>
+
+            <h2>Representations of Graphs:</h2>
+            <ul>
+                <li><strong>Adjacency List</strong>: Each vertex stores a list of adjacent vertices.</li>
+                <li><strong>Adjacency Matrix</strong>: A 2D array where a cell (i, j) indicates the presence (and
+                    possibly the weight) of an edge between vertices i and j.</li>
+            </ul>
+
+            <h2>Common Graph Algorithms:</h2>
+            <ul>
+                <li><strong>Traversal Algorithms:</strong>
+                    <ul>
+                        <li><strong>Depth-First Search (DFS)</strong>: Explores as far as possible along each branch
+                            before backtracking.</li>
+                        <li><strong>Breadth-First Search (BFS)</strong>: Explores all neighbors at the present depth
+                            before moving on to nodes at the next depth level.</li>
+                    </ul>
+                </li>
+                <li><strong>Shortest Path Algorithms:</strong>
+                    <ul>
+                        <li><strong>Dijkstra's Algorithm</strong>: Finds the shortest path from a source vertex to all
+                            other vertices in a weighted graph.</li>
+                        <li><strong>Bellman-Ford Algorithm</strong>: Finds the shortest path from a source vertex to all
+                            other vertices, handling negative weights.</li>
+                    </ul>
+                </li>
+                <li><strong>Minimum Spanning Tree (MST):</strong>
+                    <ul>
+                        <li><strong>Kruskal's Algorithm</strong>: Constructs the MST by adding edges in ascending weight
+                            order, ensuring no cycles.</li>
+                        <li><strong>Prim's Algorithm</strong>: Builds the MST by starting from an arbitrary vertex and
+                            adding the cheapest edge to the tree.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>Applications of Graphs:</h2>
+            <ul>
+                <li><strong>Social Networks</strong>: Modeling relationships between users.</li>
+                <li><strong>Routing and Navigation</strong>: Finding the shortest paths and optimizing routes.</li>
+                <li><strong>Recommendation Systems</strong>: Representing and analyzing user-item interactions.</li>
+                <li><strong>Project Scheduling</strong>: Managing tasks and dependencies in project planning.</li>
+            </ul>
+        </li>
+        <li>
+            <h4>Bipartite Graph(BFS)/ DFS</h4>
+            1. In place of visited take color in BFS</br>
+            2. check if neg color is same as curr node. If same return false </br>
+            3. Place the neg node in queue</br>
+        </li>
+
+        <li>
+            <h4>Detect Cycle in an Undirected Graph (using BFS)</h4>
+            1. For BFS traversal, we need a queue data structure and a visited array. <br>
+            2. Push the pair of the source node and its parent data (<source, parent>) in the queue, and mark the node
+                as visited. The parent will be needed so that we don’t do a backward traversal in the graph, we just
+                move frontwards. <br>
+                3. Start the BFS traversal, pop out an element from the queue every time and travel to all its unvisited
+                neighbors using an adjacency list.<br>
+                4. Repeat the steps either until the queue becomes empty, or a node appears to be already visited which
+                is not the parent, even though we traveled in different directions during the traversal, indicating
+                there is a cycle.<br>
+                5. If the queue becomes empty and no such node is found then there is no cycle in the graph.<br>
+                else if(adjacentNode != parent) return true;
+        </li>
+        <li>
+            <h4>DFS</h4>
+            else if(adjacentNode != parent) return true;
+        </li>
+
+        <li>
+            <h4>Detect cycle in a directed graph (using DFS)</h4>
+            1. We will traverse the graph component-wise using the DFS technique. <br>
+            2. Make sure to carry two visited arrays in the DFS call. One is a visited array(vis) and the other is a
+            path-visited(pathVis) array. The visited array keeps a track of visited nodes, and the path-visited keeps a
+            track of visited nodes in the current traversal only. <br>
+            3. While making a DFS call, at first we will mark the node as visited in both the arrays and then will
+            traverse through its adjacent nodes. Now, there may be either of the three cases:<br>
+            4. Case 1: If the adjacent node is not visited, we will make a new DFS call recursively with that particular
+            node.<br>
+            5. Case 2: If the adjacent node is visited and also on the same path(i.e marked visited in the pathVis
+            array), we will return true, because it means it has a cycle, thereby the pathVis was true. Returning true
+            will mean the end of the function call, as once we have got a cycle, there is no need to check for further
+            adjacent nodes. <br>
+            6. Case 3: If the adjacent node is visited but not on the same path(i.e not marked in the pathVis array), we
+            will continue to the next adjacent node, as it would have been marked as visited in some other path, and not
+            on the current one.<br>
+            7. Finally, if there are no further nodes to visit, we will unmark the current node in the pathVis array and
+            just return false. Then we will backtrack to the previous node with the returned value. The point to
+            remember is, while we enter we mark both the pathVis and vis as true, but at the end of traversal to all
+            adjacent nodes, we just make sure we unmark the pathVis and still keep the vis marked as true, as it will
+            avoid future extra traversal calls. <br>
+        </li>
+
+        <li>
+            <h4>TopoSort (DFS)</h4>
+            1. We must traverse all components of the graph.<br>
+            2. Make sure to carry a visited array(all elements are initialized to 0) and a stack data structure, where
+            we are going to store the nodes after completing the DFS call.<br>
+            3. In the DFS call, first, the current node is marked as visited. Then DFS call is made for all its adjacent
+            nodes.<br>
+            4. After visiting all its adjacent nodes, DFS will backtrack to the previous node and meanwhile, the current
+            node is pushed into the stack.<br>
+            5. Finally, we will get the stack containing one of the topological sortings of the graph.
+        </li>
+        <li>
+            <h4>Kahn's Algorithm | Topological Sort Algorithm | BFS </h4>
+            1. First, we will calculate the indegree of each node and store it in the indegree array. We can iterate
+            through the given adj list, and simply for every node u->v, we can increase the indegree of v by 1 in the
+            indegree array. <br>
+            2. Initially, there will be always at least a single node whose indegree is 0. So, we will push the node(s)
+            with indegree 0 into the queue.<br>
+            3. Then, we will pop a node from the queue including the node in our answer array, and for all its adjacent
+            nodes, we will decrease the indegree of that node by one. For example, if node u that has been popped out
+            from the queue has an edge towards node v(u->v), we will decrease indegree[v] by 1.<br>
+            4. After that, if for any node the indegree becomes 0, we will push that node again into the queue.<br>
+            5. We will repeat steps 3 and 4 until the queue is completely empty. Finally, completing the BFS we will get
+            the linear ordering of the nodes in the answer array.<br>
+        </li>
+        <li>
+            <h4>Shortest Path in Directed Acyclic Graph Topological Sort</h4>
+            1. In bfs code check with distance instead of visited<br>
+            let dist = distance[node] + wt<br>
+            if (dist < distance[neg]) <br>
+        </li>
+        <li>
+            <h4>Shortest Path in Undirected Graph with unit distance</h4>
+
+            same as Shortest Path in Directed Acyclic Graph Topological Sort
+
+        </li>
+        <li>
+            <h4>Implementing Dijkstra Algorithm</h4>
+            Use bfs using priority queue and take min distance at the top of priority queue;
+        </li>
+        <li>
+            <h4>Bellman Ford</h4>
+            Use for detect negative cycle<br>
+            1. Take distance array of length N and Infinity in every element<br>
+            2. Source distance 0<br>
+            3. Relax edge N-1 time<br>
+            for (let i = 0; i < V - 1; i++) {<br>
+                &ensp; for (let [u, v, wt] of E) {<br>
+                &ensp; &ensp; if (dist[u] !== Infinity && dist[v] > dist[u] + wt) {<br>
+                &ensp; &ensp; &ensp; dist[v] = dist[u] + wt<br>
+                &ensp; &ensp;}<br>
+                &ensp; }<br>
+                }<br>
+                4. To check cycle<br>
+                for (let [u, v, wt] of E) {<br>
+                &ensp; if (dist[u] !== Infinity && dist[v] > dist[u] + wt) {<br>
+                &ensp; &ensp; dist[v] = -1<br>
+                &ensp; }<br>
+                }
+
+        </li>
+        <li>
+            <h4>Floyd Warshall</h4>
+            Multisource shortest path<br>
+            Detect negative cycle<br>
+            1. set -1 to Infinity and dignole to 0 by traverse to matrix<br>
+            2. Take 3 loop from 0 to n (k, i, j)<br>
+            matrix[i][j] = Math.min(matrix[i][j], matrix[i][k]+ matrix[k][j])<br>
+            3. For cycle detection-> Traverse the matrix and find element in matrix which is Infinity ans return
+            cycle<br>
+            4. Traverse the matrix and change -1 to Infinity
+        </li>
+        <li>
+            <h4>Spanning Tree</h4>
+            A tree which we have N nodes and N-1 edges & all nodes are rechargeable from each other.
+            <h4>minimum Spanning Tree</h4>
+            Among all possible spanning trees of a graph, the minimum spanning tree is the one for which the sum of all
+            the edge weights is the minimum.<br>
+            1. Take the priority queue with weight and node<br>
+            2. Take visited array N size with 0 in all the idx<br>
+            3. execute bfs algo using priority queue<br>
+        </li>
+        <li>
+            <h4>Prim's Algo</h4>
+            prims algo help us to find min spaining tree weight<br>
+            1. We will first push edge weight 0, node value 0, and parent -1 as a triplet into the priority queue to
+            start the algorithm.<br>
+            Note: We can start from any node of our choice. Here we have chosen node 0.<br>
+            2. Then the top-most element (element with minimum edge weight as it is the min-heap we are using) of the
+            priority queue is popped out.<br>
+            3. After that, we will check whether the popped-out node is visited or not.<br>
+            If the node is visited: We will continue to the next element of the priority queue.<br>
+            If the node is not visited: We will mark the node visited in the visited array and add the edge weight to
+            the sum variable. If we wish to store the mst, we should insert the parent node and the current node into
+            the mst array as a pair in this step.<br>
+            4. Now, we will iterate on all the unvisited adjacent nodes of the current node and will store each of their
+            information in the specified triplet format i.e. (edge weight, node value, and parent node) in the priority
+            queue.<br>
+            5. We will repeat steps 2, 3, and 4 using a loop until the priority queue becomes empty.<br>
+            6. Finally, the sum variable should store the sum of all the edge weights of the minimum spanning tree.
+        </li>
+        <li>
+            <h4>Disjoint Set</h4>
+            Read from <a
+                href="https://takeuforward.org/data-structure/disjoint-set-union-by-rank-union-by-size-path-compression-g-46/">Link</a>
+        </li>
+        <li>
+            <h4>Kruskal’s Algo:-</h4>
+            1. First, we need to extract the edge information(if not given already) from the given adjacency list in the
+            format of (wt, u, v) where u is the current node, v is the adjacent node and wt is the weight of the edge
+            between node u and v and we will store the tuples in an array.<br>
+            2. Then the array must be sorted in the ascending order of the weights so that while iterating we can get
+            the edges with the minimum weights first.<br>
+            3. After that, we will iterate over the edge information, and for each tuple, we will apply the following
+            operation:<br>
+            3a. First, we will take the two nodes u and v from the tuple and check if the ultimate parents of both nodes
+            are the same or not using the findUPar() function provided by the Disjoint Set data structure.<br>
+            3b. If the ultimate parents are the same, we need not do anything to that edge as there already exists a
+            path between the nodes and we will continue to the next tuple.<br>
+            3c. If the ultimate parents are different, we will add the weight of the edge to our final answer(i.e. mstWt
+            variable used in the following code) and apply the union operation(i.e. either unionBySize(u, v) or
+            unionByRank(u, v)) with the nodes u and v. The union operation is also provided by the Disjoint Set.<br>
+            4. Finally, we will get our answer (in the mstWt variable as used in the following code) successfully.<br>
+        </li>
+    </ol>
+</body>
+
+</html>
